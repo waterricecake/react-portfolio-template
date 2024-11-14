@@ -56,7 +56,8 @@ export const DataProvider = ({children}) => {
             }
 
             section.category = category
-            section.content = await _loadJson(section["jsonPath"])
+            const path = `/structures/${section["id"]}`
+            section.content = await _requestAPI(path)
         }
 
         const filteredCategories = categories.filter(category => {
