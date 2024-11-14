@@ -4,7 +4,7 @@
     "fullScreenButtonEnabled": true,
 
     "preloader": {
-        "enabled": true,
+        "enabled": false,
         "title": "React <b>Portfolio</b>",
         "subtitle": "by Ryan Balieiro"
     },

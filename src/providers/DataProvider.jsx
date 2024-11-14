@@ -4,6 +4,7 @@ import {useEmails} from "/src/helpers/emails.js"
 
 const DataContext = createContext(null)
 export const useData = () => useContext(DataContext)
+const apiPath = "http://localhost:3000";
 
 const Status = {
     NOT_LOADED: 0,
@@ -41,9 +42,9 @@ export const DataProvider = ({children}) => {
     }, [jsonData])
 
     const _load = async () => {
-        const jSettings = await _loadJson("/data/settings.json")
-        const jStrings = await _loadJson("/data/strings.json")
-        const jStructure = await _loadJson("/data/structure.json")
+        const jSettings = await _requestAPI("/settings/");
+        const jStrings = await _requestAPI("/strings/");
+        const jStructure = await _requestAPI("/structures/");
 
         const categories = jStructure["categories"]
 
@@ -86,6 +87,11 @@ export const DataProvider = ({children}) => {
         const actualPath = utils.resolvePath(path)
         const request = await fetch(actualPath)
         return request.json()
+    }
+
+    const _requestAPI = async (path) => {
+        const request = await fetch(apiPath + path)
+        return request.json();
     }
 
     const getSettings = () => {
