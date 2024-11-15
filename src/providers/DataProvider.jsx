@@ -49,16 +49,6 @@ export const DataProvider = ({children}) => {
         const categories = jStructure["categories"]
 
         const sections = jStructure["sections"]
-        for(const section of sections) {
-            const category = categories.find(category => category.id === section["categoryId"])
-            if(!category) {
-                throw new Error(`[DataProvider] The section with id "${section.id}" has an invalid categoryId "${section["categoryId"]}". There's no such category.`)
-            }
-
-            section.category = category
-            const path = `/structures/${section["id"]}`
-            section.content = await _requestAPI(path)
-        }
 
         const filteredCategories = categories.filter(category => {
             return sections.find(section => section.categoryId === category.id)
