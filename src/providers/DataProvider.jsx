@@ -1,10 +1,12 @@
 import React, {createContext, useContext, useEffect, useState} from 'react'
 import {useUtils} from "/src/helpers/utils.js"
 import {useEmails} from "/src/helpers/emails.js"
+import {useURLParams} from "/src/route/ParamProvider"
 
 const DataContext = createContext(null)
 export const useData = () => useContext(DataContext)
 const apiPath = "http://localhost:3000";
+const {userId} = useURLParams;
 
 const Status = {
     NOT_LOADED: 0,
@@ -44,7 +46,7 @@ export const DataProvider = ({children}) => {
     const _load = async () => {
         const jSettings = await _requestAPI("/settings/");
         const jStrings = await _requestAPI("/strings/");
-        const jStructure = await _requestAPI("/structures/");
+        const jStructure = await _requestAPI(`/structures/${userId}`);
 
         const categories = jStructure["categories"]
 
