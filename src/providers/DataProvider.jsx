@@ -51,6 +51,19 @@ export const DataProvider = ({children}) => {
         const categories = jStructure["categories"]
 
         const sections = jStructure["sections"]
+       
+        jSettings["supportedThemes"] = [
+            {
+                id: "dark",
+                default: true,
+                icon: "fa-solid fa-moon",
+            },
+            {
+                id: "light",
+                default: false,
+                icon: "fa-solid fa-sun",
+            },
+        ];
 
         const filteredCategories = categories.filter(category => {
             return sections.find(section => section.categoryId === category.id)
