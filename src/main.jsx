@@ -8,10 +8,10 @@ import {FeedbacksProvider} from "/src/providers/FeedbacksProvider"
 import {WindowProvider} from "/src/providers/WindowProvider"
 import App from "/src/components/App.jsx"
 import Preloader from "/src/components/Preloader.jsx"
-import {AppRouter} from '/src/route/AppRouter'
+import AppRouter from '/src/route/AppRouter.jsx'
 
-const AppProviders = ({ children }) => (
-    <DataProvider>
+const AppProviders = ({ children }) =>  (
+<DataProvider>
         <LanguageProvider>
             <FeedbacksProvider>
                 <WindowProvider>
@@ -26,6 +26,7 @@ const AppProviders = ({ children }) => (
     </DataProvider>
 )
 
+
 let container = null
 
 document.addEventListener('DOMContentLoaded', function(event) {
@@ -36,11 +37,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
     createRoot(document.getElementById('root')).render(
         <StrictMode> 
             <Preloader>
+                <AppRouter>
                 <AppProviders>
-                    <AppRouter>
                         <App/>
-                    </AppRouter>
                 </AppProviders>
+                </AppRouter>
             </Preloader>
         </StrictMode>
     )

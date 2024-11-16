@@ -1,17 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import {ParamProvider} from './ParamProvider'
+import React from 'react';
 
-export const AppRouter = ({children}) => (
-    <Router>
-        <Routes>
-            <Route
-                path="/:userId/*"
-                element={
-                    <ParamProvider>
-                        {children}
-                    </ParamProvider>
-                }
-            />
-        </Routes>
-    </Router>
+const AppRouter = ({ children }) => (
+  <Router basename={import.meta.env.BASE_URL}>
+    <Routes>
+      <Route path=":userId/*" element={children} />
+    </Routes>
+  </Router>
 );
+
+export default AppRouter;

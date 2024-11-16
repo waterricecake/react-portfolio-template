@@ -1,12 +1,11 @@
 import React, {createContext, useContext, useEffect, useState} from 'react'
 import {useUtils} from "/src/helpers/utils.js"
 import {useEmails} from "/src/helpers/emails.js"
-import {useURLParams} from "/src/route/ParamProvider"
+import { useParams } from 'react-router-dom'
 
 const DataContext = createContext(null)
 export const useData = () => useContext(DataContext)
 const apiPath = "http://localhost:3000";
-const {userId} = useURLParams;
 
 const Status = {
     NOT_LOADED: 0,
@@ -14,9 +13,10 @@ const Status = {
 }
 
 export const DataProvider = ({children}) => {
+    const {userId} = useParams();
     const utils = useUtils()
     const emails = useEmails()
-
+    
     const [status, setStatus] = useState(Status.NOT_LOADED)
     const [jsonData, setJsonData] = useState({
         settings: {},
