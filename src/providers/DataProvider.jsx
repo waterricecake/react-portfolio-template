@@ -51,6 +51,15 @@ export const DataProvider = ({children}) => {
         const categories = jStructure["categories"]
 
         const sections = jStructure["sections"]
+        for(const section of sections) {
+            const category = categories.find(category => category.id === section["categoryId"])
+            if(!category) {
+                throw new Error(`[DataProvider] The section with id "${section.id}" has an invalid categoryId "${section["categoryId"]}". There's no such category.`)
+            }
+
+            section.category = category
+            section.content = await _loadJson(section["jsonPath"])
+        }
        
         jSettings["supportedThemes"] = [
             {
