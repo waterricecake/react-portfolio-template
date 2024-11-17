@@ -45,7 +45,7 @@ export const DataProvider = ({children}) => {
 
     const _load = async () => {
         const jSettings = await _requestAPI(`/settings/${userId}`);
-        const jStrings = await _requestAPI(`/strings/${userId}`);
+        const jStrings = await _loadJson('/data/strings.json')
         const jStructure = await _requestAPI(`/structures/${userId}`);
 
         const categories = jStructure["categories"]
