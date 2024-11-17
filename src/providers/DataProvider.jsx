@@ -58,7 +58,7 @@ export const DataProvider = ({children}) => {
             }
 
             section.category = category
-            section.content = await _loadJson(section["jsonPath"])
+           section.content = await _requestAPI(`/articles/${section["articleId"]}`)
         }
        
         jSettings["supportedThemes"] = [
