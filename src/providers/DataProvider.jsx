@@ -52,13 +52,12 @@ export const DataProvider = ({children}) => {
 
         const sections = jStructure["sections"]
         for(const section of sections) {
-            const category = categories.find(category => category.id === section["categoryId"])
+            const category = categories.find(category => category._id === section["categoryId"])
             if(!category) {
                 throw new Error(`[DataProvider] The section with id "${section.id}" has an invalid categoryId "${section["categoryId"]}". There's no such category.`)
             }
-
             section.category = category
-           section.content = await _requestAPI(`/articles/${section["articleId"]}`)
+           section.content = await _requestAPI(`/contents/${section["contentId"]}`)
         }
        
         jSettings["supportedThemes"] = [
