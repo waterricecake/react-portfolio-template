@@ -74,7 +74,7 @@ export const DataProvider = ({children}) => {
         ];
 
         const filteredCategories = categories.filter(category => {
-            return sections.find(section => section.categoryId === category.id)
+            return sections.find(section => section.categoryId === category._id)
         })
 
         setJsonData(prevState => ({
